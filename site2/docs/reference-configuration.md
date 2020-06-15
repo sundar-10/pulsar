@@ -13,16 +13,16 @@ sidebar_label: Pulsar configuration
 
 Pulsar configuration can be managed via a series of configuration files contained in the [`conf`](https://github.com/apache/pulsar/tree/master/conf) directory of a Pulsar [installation](getting-started-standalone.md)
 
-- [BookKeeper](#bookkeeper)
-- [Broker](#broker)
-- [Client](#client)
-- [Service discovery](#service-discovery)
-- [Log4j](#log4j)
-- [Log4j shell](#log4j-shell)
-- [Standalone](#standalone)
-- [WebSocket](#websocket)
-- [Pulsar proxy](#pulsar-proxy)
-- [ZooKeeper](#zookeeper)
+- [](#)
+- [The Default value is absent, the broker uses the first listener as the internal listener.](#the-default-value-is-absent-the-broker-uses-the-first-listener-as-the-internal-listener)
+  - [Client](#client)
+  - [Service discovery](#service-discovery)
+  - [Log4j](#log4j)
+  - [Log4j shell](#log4j-shell)
+  - [Standalone](#standalone)
+  - [WebSocket](#websocket)
+  - [Pulsar proxy](#pulsar-proxy)
+  - [ZooKeeper](#zookeeper)
 
 ## BookKeeper
 
@@ -105,6 +105,8 @@ Pulsar brokers are responsible for handling incoming messages from producers, di
 
 |Name|Description|Default|
 |---|---|---|
+|advertisedListeners|Specify multiple advertised listeners for the broker.<br><br>The format is `<listener_name>:pulsar://<host>:<port>`.<br><br>If there are multiple listeners, separate them with commas.<br><br>**Note**: do not use this configuration with `advertisedAddress` and `brokerServicePort`.<br><br> If the value of this configuration is empty, the broker uses `advertisedAddress` and `brokerServicePort`|/|
+internalListenerName|Specify the internal listener name for the broker.<br><br>**Note**: the listener name must be contained in `advertisedListeners`.<br><br> If the value of this configuration is empty, the broker uses the first listener as the internal listener.|/|
 |enablePersistentTopics|  Whether persistent topics are enabled on the broker |true|
 |enableNonPersistentTopics| Whether non-persistent topics are enabled on the broker |true|
 |functionsWorkerEnabled|  Whether the Pulsar Functions worker service is enabled in the broker  |false|
